@@ -5,6 +5,7 @@ import { connectPassport } from './utils/Provider.js'
 import session from "express-session"
 import passport from "passport"
 import cookieParser from "cookie-parser"
+import { errorMiddleware } from "./middlewares/errorMiddleware.js"
 
 const app = express();
 dotenv.config({
@@ -32,3 +33,6 @@ app.use("/api/v1",userRoutes);
 
 
 export default app;
+
+// using error middleware
+app.use(errorMiddleware);

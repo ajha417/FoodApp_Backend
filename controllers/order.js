@@ -1,7 +1,7 @@
 import { asyncError } from "../middlewares/errorMiddleware.js";
 import { Order } from "../models/Order.js";
 import ErrorHandler from "../utils/ErrorHandler.js";
-
+import {instance} from "../server.js"
 
 export const placeholder = asyncError(async (req,res,next)=>{
     const {
@@ -44,6 +44,7 @@ export const placeholderOnline = asyncError(async (req,res,next)=>{
         totalAmount
     } = req.body;
     const user = "req.user._id";
+
     const orderOptions = {
         shippingInfo,
         orderItems,
@@ -53,11 +54,19 @@ export const placeholderOnline = asyncError(async (req,res,next)=>{
         shippingCharges,
         totalAmount,
         user
-    }
-    await Order.create(orderOptions);
+    };
+
+    const options = {
+        amount: Number(totalAmount)*100,  // amount in the smallest currency unit
+        currency: "INR",
+      };
+     const order = await instance.orders.create(options);
+
+
     res.status(201).json({
         success:true,
-        message:"Order placed successfully!!!"
+        order,
+        orderOptions
     })
 }
 )

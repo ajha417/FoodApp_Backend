@@ -17,10 +17,10 @@
     "mongoose": "^6.6.0",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
-    "razorpay": "^2.8.6"
+    "razorpay": "^2.8.3"
   },
-  "description": "",
   "devDependencies": {
     "nodemon": "^2.0.22"
-  }
+  },
+  "description": ""
 }

@@ -1,11 +1,12 @@
 import express from 'express';
 import { autherizeAdmin, isAuthenticated } from '../middlewares/auth.js';
-import { getAdminOrders, getMyOrders, getOrderDetails, placeholder, processOrders } from '../controllers/order.js';
+import { getAdminOrders, getMyOrders, getOrderDetails, placeholder, placeholderOnline, processOrders } from '../controllers/order.js';
 
 
 const router = express.Router();
 
-router.post('/createuser',placeholder)
+router.post('/createorder',isAuthenticated,placeholder)
+router.post('/createorderonline',placeholderOnline)
 router.get('/myorders',isAuthenticated,getMyOrders)
 router.get('/order/:id',isAuthenticated,getOrderDetails)
 

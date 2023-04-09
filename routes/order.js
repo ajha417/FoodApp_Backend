@@ -5,6 +5,6 @@ import { placeholder } from '../controllers/order.js';
 
 const router = express.Router();
 
-router.post('/createuser',isAuthenticated,placeholder)
+router.post('/createuser',placeholder)
 
 export default router;

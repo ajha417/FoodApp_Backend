@@ -1,11 +1,14 @@
-import express from "express"
+import express, { urlencoded } from "express"
 import dotenv from "dotenv"
-import userRoutes from "./routes/user.js"
 import { connectPassport } from './utils/Provider.js'
 import session from "express-session"
 import passport from "passport"
 import cookieParser from "cookie-parser"
 import { errorMiddleware } from "./middlewares/errorMiddleware.js"
+
+// importing routes
+import userRoutes from "./routes/user.js"
+import orderRoutes from "./routes/order.js"
 
 const app = express();
 dotenv.config({
@@ -15,6 +18,10 @@ dotenv.config({
 
 
 app.use(cookieParser());
+app.use(express.json());
+app.use(urlencoded({
+    extended:true
+}))
 // using middlewares
 app.use(session({
     secret:process.env.SESSION_SECRET,
@@ -30,6 +37,7 @@ app.use(passport.session())
 connectPassport();
 
 app.use("/api/v1",userRoutes);
+app.use("/api/v1",orderRoutes);
 
 
 export default app;

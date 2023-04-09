@@ -8,3 +8,10 @@ import ErrorHandler from "../utils/ErrorHandler.js";
     }
     next();
 }
+
+export const autherizeAdmin = (req,res,next)=>{
+    if(req.user.role !=="admin"){
+        return next(new ErrorHandler("Only admin allowed",405))
+    }
+    next();
+}

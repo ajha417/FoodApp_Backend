@@ -16,7 +16,8 @@
     "express-session": "^1.17.3",
     "mongoose": "^6.6.0",
     "passport": "^0.6.0",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "razorpay": "^2.8.6"
   },
   "description": "",
   "devDependencies": {

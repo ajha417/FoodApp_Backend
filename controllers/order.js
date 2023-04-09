@@ -12,7 +12,7 @@ export const placeholder = asyncError(async (req,res,next)=>{
         shippingCharges,
         totalAmount
     } = req.body;
-    const user = req.user._id;
+    const user = "req.user._id";
     const orderOptions = {
         shippingInfo,
         orderItems,
@@ -30,3 +30,17 @@ export const placeholder = asyncError(async (req,res,next)=>{
     })
 }
 )
+
+export const getMyOrders = asyncError(async(req,res,next)=>{
+    const orders = await Order.find({
+        user:req.user._id,
+    }).populate("user","name")
+    res.status(200).json({
+        success:"true",
+        orders
+    })
+})
+
+export const orderDetails = asyncError(async(req,res,next)=>{
+    
+})

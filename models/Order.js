@@ -62,7 +62,7 @@ const Schema = new mongoose.Schema({
     },
     paymentMethod:{
         type:String,
-        enum:["COD","Online"],
+        enum:["COD","online"],
         default:"COD"
     },
     paymentInfo:{
